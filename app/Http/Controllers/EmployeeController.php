@@ -15,7 +15,9 @@ class EmployeeController extends Controller
     public function index()
     {
         //
-        return view('admin.empleados.index');
+        $datos['employees'] = Employee::paginate(4);
+       
+        return view('admin.empleados.index',$datos);
     }
 
     /**
@@ -38,6 +40,24 @@ class EmployeeController extends Controller
     public function store(Request $request)
     {
         //
+        $campos = [
+            'nombre' => 'required|string|max:50',
+            'email' => 'required|string|max:100',
+            'fecha_ingreso' => 'required|string',
+            
+        ];
+
+        $mensaje = [
+            'nombre.required' => 'el nombre es requerido',
+            'email.required' => 'el correo es requerido',
+            'fecha_ingreso.required' => 'el Autor es requerido',
+            
+        ];
+
+        $this->validate($request,$campos,$mensaje);
+        $dataArticles = request()->except('_token');
+        Employee::create($dataArticles);
+        return redirect()->route('empleados.index')->with('message', 'Nuevo empleado agregado');
     }
 
     /**
