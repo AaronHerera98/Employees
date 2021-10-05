@@ -77,9 +77,12 @@ class EmployeeController extends Controller
      * @param  \App\Models\Employee  $employee
      * @return \Illuminate\Http\Response
      */
-    public function edit(Employee $employee)
+    public function edit($id)
     {
         //
+        $empleado = Employee::findOrFail($id);
+        
+        return view('admin.empleados.edit', compact('empleado'));
     }
 
     /**
@@ -89,9 +92,32 @@ class EmployeeController extends Controller
      * @param  \App\Models\Employee  $employee
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Employee $employee)
+    public function update(Request $request, $id)
     {
+        $campos = [
+            'nombre' => 'required|string|max:50',
+            'email' => 'required|string|max:100',
+            'fecha_ingreso' => 'required|string',
+            
+        ];
+
+        $mensaje = [
+            'nombre.required' => 'el nombre es requerido',
+            'email.required' => 'el correo es requerido',
+            'fecha_ingreso.required' => 'el Autor es requerido',
+            
+        ];
+
+        $this->validate($request, $campos, $mensaje);
+
+
+
         //
+        $data= request()->except(['_token', '_method']);
+        Employee::where('id', '=', $id)->update($data);
+        $empleado = Employee::findOrFail($id);
+        return redirect()->route('empleados.index')->with('message', 'Datos modificados correctamente :)');
+
     }
 
     /**
@@ -100,8 +126,12 @@ class EmployeeController extends Controller
      * @param  \App\Models\Employee  $employee
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Employee $employee)
+    public function destroy($id)
     {
         //
+
+        
+        Employee::destroy($id);
+        return redirect()->route('empleados.index')->with('error', 'Empleado eliminado');
     }
 }

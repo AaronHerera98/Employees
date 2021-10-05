@@ -36,6 +36,7 @@
 <!--seccion de la tabla-->
 <div class="row">
   <div class="col-12">
+    @if(count($employees) > 0)
     <table class="table table-striped">
       <thead>
         <tr>
@@ -83,6 +84,17 @@
 
       </tbody>
     </table>
+
+    @else
+    <div class="bg-light p-5 rounded-lg m-3">
+  <h1 class="display-4">Sin empleados.</h1>
+  <p class="lead">
+  Aún no hay empleados registrados, para agregar uno, selecciona el botón de agregar.
+  </p>
+ 
+ 
+</div>
+    @endif
 
   </div>
 </div>

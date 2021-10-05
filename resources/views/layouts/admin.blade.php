@@ -26,7 +26,7 @@
 <body>
     
 <!-- As a heading -->
-<nav class="navbar navbar-dark bg-dark">
+<nav class="navbar navbar-dark" style="background-color: #01AB79;"> 
   <div class="container-fluid">
     <a class="navbar-brand mb-0 h1" href="{{route('empleados.index')}}">Crud Empleados</a>
   </div>
