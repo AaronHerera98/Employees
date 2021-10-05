@@ -17,13 +17,13 @@
 @if(isset($empleado->fecha_ingreso))
 <div class="form-group">
     <label for="">Fecha:</label>
-    <input type="date" id="fecha_ingreso" name="fecha_ingreso" value="yy-mm-dd"  class="form-control">
+    <input type="date" id="fecha_ingreso" name="fecha_ingreso"   class="form-control" value="{{isset($empleado->fecha_ingreso)?$empleado->fecha_ingreso:old('fecha_ingreso')}}" >
 
 </div>
 @else
 <div class="form-group">
     <label for="">Fecha:</label>
-    <input type="date" id="fecha_ingreso" name="fecha_ingreso" value="{{isset($empleado->fecha_ingreso)?$empleado->fecha_ingreso:old('fecha_ingreso')}}"  class="form-control">
+    <input type="date" id="fecha_ingreso" name="fecha_ingreso"  class="form-control" value="yy-mm-dd">
 
 </div>
 @endif

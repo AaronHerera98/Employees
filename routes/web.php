@@ -14,7 +14,7 @@ use App\Http\Controllers\EmployeeController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('bienvenido');
 });
 Route::prefix('admin')->group(function () {
     Route::resource('empleados', EmployeeController::class);

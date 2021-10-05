@@ -27,19 +27,23 @@
 
 
 <div class="row">
-  <div class="col-2">
-    <a href="{{route('empleados.create')}}" class="btn btn-primary">Agregar</a>
+  <div class="bg-light p-5 rounded-lg m-3">
+    <h1 class="display-4">Listado de empleados.</h1>
+
+    <a class="btn btn-primary btn-lg" href="{{route('empleados.create')}}" role="button">
+      Registrar empleado
+    </a>
   </div>
 </div>
 <br>
-<br>
+
 <!--seccion de la tabla-->
 <div class="row">
   <div class="col-12">
     @if(count($employees) > 0)
     <table class="table table-striped">
-      <thead>
-        <tr>
+      <thead class="bg-dark">
+        <tr class="text-white">
           <th scope="col">#</th>
           <th scope="col">Nombre</th>
           <th scope="col">Correo</th>
@@ -66,7 +70,7 @@
           </td>
           <td>
             <div class="btn-group">
-              <a href="{{ route('empleados.edit',$empleado->id)}}" class="btn btn-warning"><i class="fas fa-edit"></i></a>
+              <a href="{{ route('empleados.edit',$empleado->id)}}" class="btn btn-info"><i class="fas fa-edit"></i></a>
               <form action="{{ route('empleados.destroy',$empleado->id)}}" method="POST">
                 @csrf
                 {{method_field('DELETE')}}
@@ -84,16 +88,13 @@
 
       </tbody>
     </table>
-
+    {!! $employees->links()!!}
     @else
-    <div class="bg-light p-5 rounded-lg m-3">
-  <h1 class="display-4">Sin empleados.</h1>
-  <p class="lead">
-  Aún no hay empleados registrados, para agregar uno, selecciona el botón de agregar.
-  </p>
- 
- 
-</div>
+    <div class="alert alert-secondary" role="alert">
+      Aún no hay empleados registrados, para agregar uno, selecciona el botón de agregar.
+
+    </div>
+
     @endif
 
   </div>
