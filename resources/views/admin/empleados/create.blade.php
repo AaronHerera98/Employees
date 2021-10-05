@@ -32,9 +32,11 @@ Crear empleado
     <div class=" col-6">
 
         <div class="card">
-            <div class="card-header">Datos</div>
+          <div class="card-header bg-dark">
+              <small class="text-white">Registrar empleado</small>
+          </div>
 
-            <div class="card-body">
+            <div class="card-body bg-light">
                 <!--inicia formulario-->
                 <!--lo mando a index por que en route:list /empleados es para acceder al store entonces como esta es una ruta y no una url lo mando a empleados.index y no admin/empleados-->
                 <form action="{{ route('empleados.index') }}" method="POST" enctype="multipart/form-data">
