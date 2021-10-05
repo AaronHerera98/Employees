@@ -10,6 +10,8 @@ Crear empleado
 
     </div>
 </div>
+<br>
+<br>
 <div class="row">
 @if(count($errors)>0)
 
