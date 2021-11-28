@@ -70,6 +70,10 @@
           </td>
           <td>
             <div class="btn-group">
+            <a href="{{ route('empleados.pdf',$empleado->id)}}" class="btn btn-success">
+            <i class="fas fa-file-pdf"></i>
+            </a>
+
               <a href="{{ route('empleados.edit',$empleado->id)}}" class="btn btn-info"><i class="fas fa-edit"></i></a>
               <form action="{{ route('empleados.destroy',$empleado->id)}}" method="POST">
                 @csrf
