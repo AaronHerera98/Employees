@@ -18,8 +18,13 @@ Route::get('/', function () {
 });
 Route::prefix('admin')->group(function () {
     Route::resource('empleados', EmployeeController::class);
-    
+    Route::get('pdf/{id}', [App\Http\Controllers\EmployeeController::class, 'pdf'])->name('empleados.pdf');
+
+
 });
+
+
+
 // Auth::routes();
 
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

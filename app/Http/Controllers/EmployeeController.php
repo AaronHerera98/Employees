@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Employee;
 use Illuminate\Http\Request;
-
+use PDF;
 class EmployeeController extends Controller
 {
     /**
@@ -18,6 +18,19 @@ class EmployeeController extends Controller
         $datos['employees'] = Employee::paginate(3);
        
         return view('admin.empleados.index',$datos);
+    }
+
+
+    public function pdf($id)
+    {
+        //
+        $empleado = Employee::findOrFail($id);
+     
+        $pdf = PDF::loadView('admin.empleados.pdf',['empleado'=>$empleado]);
+       
+        return $pdf->stream();
+    
+        return view('admin.empleados.pdf',compact('empleado'));
     }
 
     /**
